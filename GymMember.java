@@ -1,3 +1,4 @@
+// GymMember class is an abstract class that contains the attributes and methods that are common to both the classes
 public abstract class GymMember
 {
     protected int id;
@@ -11,7 +12,7 @@ public abstract class GymMember
     protected int attendance;
     protected double loyaltyPoints;
     protected boolean activeStatus;
-    
+
     public GymMember(int id, String name, String location, String phone, String email, String gender, String DOB, String membershipStartDate)
     {
         this.id = id;
@@ -26,7 +27,7 @@ public abstract class GymMember
         this.loyaltyPoints = 0.0;
         this.activeStatus = false;
     }
-    
+
     public int getId()
     {
         return id;
@@ -71,14 +72,14 @@ public abstract class GymMember
     {
         return activeStatus;
     }
-    
+
     public abstract void markAttendance();
-    
+
     public void activateMembership()
     {
         this.activeStatus = true;
     }
-    
+
     public void deactivateMembership()
     {
         if (this.activeStatus)
@@ -87,17 +88,17 @@ public abstract class GymMember
         }
         else
         {
-            System.out.println("Membership is already deactivated."); 
+            System.out.println("Membership is already deactivated.");
         }
     }
-    
+
     public void resetMember()
     {
         this.activeStatus = false;
         this.attendance = 0;
         this.loyaltyPoints = 0.0;
     }
-    
+
     public void display()
     {
         System.out.println("ID: " + id);
@@ -112,5 +113,5 @@ public abstract class GymMember
         System.out.println("Loyalty Points: " + loyaltyPoints);
         System.out.println("Active Status: " + activeStatus);
     }
-    
+
 }

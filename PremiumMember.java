@@ -1,3 +1,4 @@
+//PremiumMember class is a subclass of GymMember class. It contains additional attributes and methods specific to premium members.
 public class PremiumMember extends GymMember
 {
     private final double premiumCharge;
@@ -5,7 +6,7 @@ public class PremiumMember extends GymMember
     private boolean isFullPayment;
     private double paidAmount;
     private double discountAmount;
-    
+
     public PremiumMember(int id, String name, String location, String phone, String email, String gender, String DOB, String membershipStartDate, String personalTrainer)
     {
         super(id, name, location, phone, email, gender, DOB, membershipStartDate);
@@ -15,8 +16,8 @@ public class PremiumMember extends GymMember
         this.isFullPayment = false;
         this.discountAmount = 0;
     }
-    
-    public double getPremiumCharge() 
+
+    public double getPremiumCharge()
     {
         return premiumCharge;
     }
@@ -36,47 +37,47 @@ public class PremiumMember extends GymMember
     {
         return discountAmount;
     }
-    
+
     @Override
-    public void markAttendance() 
+    public void markAttendance()
     {
         this.attendance++;
         this.loyaltyPoints += 10;
     }
-    
-    public String payDueAmount(double paidAmount) 
+
+    public String payDueAmount(double paidAmount)
     {
-        if (this.isFullPayment) 
+        if (this.isFullPayment)
         {
             return "Payment is already complete. No due amount.";
         }
         double totalPaid = this.paidAmount + paidAmount;
-        if (totalPaid > premiumCharge) 
+        if (totalPaid > premiumCharge)
         {
             return "Payment exceeds the premium charge. Maximum amount to pay: " + (premiumCharge - this.paidAmount);
         }
         this.paidAmount = totalPaid;
-        if (this.paidAmount == premiumCharge) 
+        if (this.paidAmount == premiumCharge)
         {
             this.isFullPayment = true;
         }
         double remainingAmount = premiumCharge - this.paidAmount;
         return "Payment successful. Remaining amount to be paid: " + remainingAmount;
     }
-    
+
     public void calculateDiscount()
     {
-        if (this.isFullPayment) 
+        if (this.isFullPayment)
         {
-            this.discountAmount = premiumCharge * 0.10; 
+            this.discountAmount = premiumCharge * 0.10;
             System.out.println("Discount calculated successfully. Discount amount: " + discountAmount);
         }
-        else 
+        else
         {
             System.out.println("No discount available. Complete the payment to get 10% discount.");
         }
     }
-    
+
     public void revertPremiumMember()
     {
         super.resetMember();
@@ -85,7 +86,7 @@ public class PremiumMember extends GymMember
         this.paidAmount = 0;
         this.discountAmount = 0;
     }
-    
+
     @Override
     public void display()
     {
@@ -95,10 +96,10 @@ public class PremiumMember extends GymMember
         System.out.println("Full Payment: " + (isFullPayment ? "Yes" : "No"));
         double remainingAmount = premiumCharge - paidAmount;
         System.out.println("Remaining Amount to be Paid: " + remainingAmount);
-        if (isFullPayment) 
+        if (isFullPayment)
         {
             System.out.println("Discount Amount: " + discountAmount);
         }
     }
-    
+
 }

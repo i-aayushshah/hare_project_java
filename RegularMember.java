@@ -1,3 +1,4 @@
+// RegularMember class that extends GymMember class and contains additional attributes and methods specific to regular members
 public class RegularMember extends GymMember
 {
     private final int attendanceLimit;
@@ -6,7 +7,7 @@ public class RegularMember extends GymMember
     private String referralSource;
     private String plan;
     private double price;
-    
+
     public RegularMember(int id, String name, String location, String phone, String email, String gender, String DOB, String membershipStartDate, String referralSource)
     {
         super(id, name, location, phone, email, gender, DOB, membershipStartDate);
@@ -17,7 +18,7 @@ public class RegularMember extends GymMember
         this.price = 6500;
         this.removalReason = "";
     }
-    
+
     public int getAttendanceLimit()
     {
         return attendanceLimit;
@@ -42,7 +43,7 @@ public class RegularMember extends GymMember
     {
         return price;
     }
-    
+
     @Override
     public void markAttendance()
     {
@@ -55,7 +56,7 @@ public class RegularMember extends GymMember
             }
         }
     }
-    
+
     public double getPlanPrice(String plan)
     {
         switch (plan.toLowerCase())
@@ -70,30 +71,30 @@ public class RegularMember extends GymMember
                 return -1;
         }
     }
-    
+
     public String upgradePlan(String plan)
     {
-        if (this.isEligibleForUpgrade) 
+        if (this.isEligibleForUpgrade)
         {
             double newPrice = getPlanPrice(plan);
-            if (newPrice == -1) 
+            if (newPrice == -1)
             {
                 return "Invalid plan selected. Available plans: basic, standard, deluxe.";
             }
-            if (this.plan.equalsIgnoreCase(plan)) 
+            if (this.plan.equalsIgnoreCase(plan))
             {
                 return "You are already subscribed to the " + plan + " plan.";
             }
             this.plan = plan;
             this.price = newPrice;
             return "Plan upgraded to " + plan + " successfully.";
-        } 
+        }
         else
         {
             return "You are not eligible for an upgrade yet.";
         }
     }
-    
+
     public void revertRegularMember(String removalReason)
     {
         super.resetMember();
@@ -102,7 +103,7 @@ public class RegularMember extends GymMember
         this.price = 6500;
         this.removalReason = removalReason;
     }
-    
+
     @Override
     public void display()
     {
@@ -113,6 +114,6 @@ public class RegularMember extends GymMember
         {
             System.out.println("Removal Reason: " + removalReason);
         }
-        
+
     }
 }
